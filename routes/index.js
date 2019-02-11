@@ -27,6 +27,25 @@ router.get("/users/offer/:id", (req, res, next)=> {
 });
 })
 
+
+// //POST new request to the database
+// router.post('/new-goal', isLoggedIn, (req,res,next)=> {
+//   Goal.create({
+//     title: req.body.title,
+//     frequency: req.body.frequency,
+//     history: [{date: tools.currentDate(), value: 0}],
+//     _user: req.user._id,
+//     lastUpdate: tools.currentDate(),
+//     nextWeekUpdate: tools.startDayOfFollowingWeek()
+//   })
+//   .then(goal=> {
+//     res.redirect('/')
+//   })
+//   .catch(err=> {
+//     console.log("Error at POST /new-goal", err);
+//   })
+// })
+
 // comment sources
 // var comment = new Comment({
 //   username: req.body.username,
