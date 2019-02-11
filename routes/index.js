@@ -1,17 +1,16 @@
-const express = require(‘express’);
+const express = require('express');
 const router = express.Router();
-const {checkConnectedAndActive} = require(‘../helpers/middlewares’)
-var Comment = require(“../models/Comment”)
-var User = require(“../models/User”)
+const {checkConnectedAndActive} = require('../helpers/middlewares')
+var User = require("../models/User")
 
 /* GET home page. */
-router.get(‘/’, function(req, res, next) {
- res.render(‘index’);
+router.get('/', function(req, res, next) {
+ res.render('index');
 });
 
-router.get(‘/profile’, checkConnectedAndActive, (req,res,next)=> {
+router.get('/profile', checkConnectedAndActive, (req,res,next)=> {
  let user = req.user // When connected to database, req.user is a document with the information of the logged in user
- res.render(‘profile’, {
+ res.render('profile', {
    user
  })
 })
@@ -19,14 +18,14 @@ router.get(‘/profile’, checkConnectedAndActive, (req,res,next)=> {
 
 
 // find Superhero by ones ID
-router.get(“/users/offer/:id”, (req, res, next)=> {
- console.log(“DEBUG”)
+router.get("/users/offer/:id", (req, res, next)=> {
+ console.log("DEBUG")
  User.findById(req.params.id)
    .then(user => {
 
-     console.log(“DEBUG profile page”, user)
+     console.log("DEBUG profile page", user)
 });
-}
+})
 
 // comment sources
 // var comment = new Comment({

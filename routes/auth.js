@@ -23,27 +23,27 @@ router.get("/signup", (req, res, next) => {
   res.render("auth/signup");
 });
 
-router.post(“/signup”, (req, res, next) => {
+router.post("/signup", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
   const email = req.body.email;
-  if (username === “” || password === “” || email === “”) {
-    res.render(“auth/signup”, { message: “Indicate username, password and email” });
+  if (username === "" || password === "" || email === "") {
+    res.render("auth/signup", { message: "Indicate username, password and email" });
     return;
   }
  
     // detect if username or email already exists
-  User.findOne({ $or: [{username},{email}] }, “username”, (err, user) => {
+  User.findOne({ $or: [{username},{email}] }, "username", (err, user) => {
     if (user !== null) {
-      res.render(“auth/signup”, { message: “The username or the email already exists” });
+      res.render("auth/signup", { message: "The username or the email already exists" });
       return;
     }
  
     const salt = bcrypt.genSaltSync(bcryptSalt);
     const hashPass = bcrypt.hashSync(password, salt);
  
-    const characters = ‘0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ’;
-    let token = ‘’;
+    const characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let token = '';
     for (let i = 0; i < 25; i++) {
     token += characters[Math.floor(Math.random() * characters.length )];
     }
@@ -64,51 +64,51 @@ router.post(“/signup”, (req, res, next) => {
     newUser.save()
     .then(() => {
       transporter.sendMail({
-        from: ‘“Charlotte” <charlotte.treuse7fff00@gmail.com>’,
+        from: '"Charlotte" <charlotte.treuse7fff00@gmail.com>',
         to: email,
-        subject: ‘Validate your account’,
+        subject: 'Validate your account',
         text: message,
         html: `<b>${message}</b>`
       })
       .then(() => {
-        res.redirect(“/auth/signup-done”);
+        res.redirect("/auth/signup-done");
       })
     })
     .catch(err => {
-      res.render(“auth/signup”, { message: “Something went wrong” });
+      res.render("auth/signup", { message: "Something went wrong" });
     })
   });
  });
  
  
- router.get(“/signup-done”, (req, res, next) => {
-  res.render(“auth/signup-done”);
+ router.get("/signup-done", (req, res, next) => {
+  res.render("auth/signup-done");
  });
  
  
- router.get(“/confirm/:confirmationCode”, (req, res, next) => {
+ router.get("/confirm/:confirmationCode", (req, res, next) => {
   User.findOneAndUpdate(
     { confirmationCode: req.params.confirmationCode }, //getting a certain info from the URL
-    { status: ‘Active’}
+    { status: 'Active'}
     )
     .then(user => {
       if (user) {
         // to log in the user found in the database:
         req.logIn(user, () => {
-        res.render(“auth/confirmation-success”, {user,
+        res.render("auth/confirmation-success", {user,
         isConnectedAndActive: true //to override a value defined by a previous middleware
           })
         })
       }
-      else res.render(“auth/confirmation-failed”);
+      else res.render("auth/confirmation-failed");
     })
   .catch(err => next(err))
  });
  
  
- router.get(“/logout”, (req, res) => {
+ router.get("/logout", (req, res) => {
   req.logout();
-  res.redirect(“/”);
+  res.redirect("/");
  });
  
  

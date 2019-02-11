@@ -1,4 +1,4 @@
-const mongoose = require(‘mongoose’);
+const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
 const requestSchema = new Schema({
@@ -6,28 +6,28 @@ const requestSchema = new Schema({
  skillsRequired: String,
  status: {
    type: String,
-   enum: [‘Open’, ‘Claimed’, ‘Closed’],
-   default: ‘Open’,
+   enum: ['Open', 'Claimed', 'Closed'],
+   default: 'Open',
  },
  address: {type: String, required: true},
  location: {
    type: {
      type: String,
-     enum: [‘Point’],
-     default: ‘Point’,
+     enum: ['Point'],
+     default: 'Point',
    },
    coordinates: {
      type: [Number],
      required: true,
    }
  },
- _owner: {type: Schema.Types.ObjectId, ref: “User”},
+ _owner: {type: Schema.Types.ObjectId, ref: "User"},
  }, {
  timestamps: {
-   createdAt: ‘created_at’,
-   updatedAt: ‘updated_at’
+   createdAt: 'created_at',
+   updatedAt: 'updated_at'
  }
 });
 
-const Request = mongoose.model(‘Request’, requestSchema);
+const Request = mongoose.model('Request', requestSchema);
 module.exports = Request;
