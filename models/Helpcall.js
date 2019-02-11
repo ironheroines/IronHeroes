@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
-const requestSchema = new Schema({
+const helpcallSchema = new Schema({
  subject: {type: String, required: true},
  skillsRequired: String,
  status: {
@@ -29,5 +29,5 @@ const requestSchema = new Schema({
  }
 });
 
-const Request = mongoose.model('Request', requestSchema);
-module.exports = Request;
+const Helpcall = mongoose.model('Helpcall', helpcallSchema);
+module.exports = Helpcall;

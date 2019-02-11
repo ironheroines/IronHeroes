@@ -63,17 +63,20 @@ router.post("/signup", (req, res, next) => {
  
     newUser.save()
     .then(() => {
-      transporter.sendMail({
-        from: '"Charlotte" <charlotte.treuse7fff00@gmail.com>',
-        to: email,
-        subject: 'Validate your account',
-        text: message,
-        html: `<b>${message}</b>`
-      })
-      .then(() => {
-        res.redirect("/auth/signup-done");
-      })
-    })
+      passport.authenticate('local', {
+        successRedirect: "/",
+        failureRedirect: "/auth/login",
+        failureFlash: true,
+        passReqToCallback: true
+      // transporter.sendMail({
+      //   from: '"Charlotte" <charlotte.treuse7fff00@gmail.com>',
+      //   to: email,
+      //   subject: 'Validate your account',
+      //   text: message,
+      //   html: `<b>${message}</b>`
+      })(req, res, function () {
+      res.redirect('/');
+    })})
     .catch(err => {
       res.render("auth/signup", { message: "Something went wrong" });
     })
@@ -81,9 +84,9 @@ router.post("/signup", (req, res, next) => {
  });
  
  
- router.get("/signup-done", (req, res, next) => {
-  res.render("auth/signup-done");
- });
+//  router.get("/signup-done", (req, res, next) => {
+//   res.render("auth/signup-done");
+//  });
  
  
  router.get("/confirm/:confirmationCode", (req, res, next) => {
