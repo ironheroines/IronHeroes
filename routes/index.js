@@ -8,12 +8,17 @@ router.get('/', function(req, res, next) {
  res.render('index');
 });
 
-router.get('/profile', checkConnectedAndActive, (req,res,next)=> {
- let user = req.user // When connected to database, req.user is a document with the information of the logged in user
- res.render('profile', {
-   user
- })
+
+router.get('/find-super-hero', (req,res,next)=> {
+ //let user = req.user // When connected to database, req.user is a document with the information of the logged in user
+ User.find()
+  .then(user => {
+     res.render('find-super-hero', {
+  user}
+  )}
+  )
 })
+ 
 
 
 
