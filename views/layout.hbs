@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html lang=“en”>
+<html lang="en">
 <head>
- <meta charset=“UTF-8">
- <meta name=“viewport” content=“width=device-width, initial-scale=1.0">
- <meta http-equiv=“X-UA-Compatible” content=“ie=edge”>
+ <meta charset="UTF-8">
+ <meta name="viewport” content="width=device-width, initial-scale=1.0">
+ <meta http-equiv="X-UA-Compatible” content="ie=edge">
  <title>Rent-A-Superhero</title>
- <link rel=“stylesheet” href=“/stylesheets/style.css”/>
+ <link rel="stylesheet" href="/stylesheets/style.css"/>
 </head>
 <body>
 
  <nav>
-   <a href=“/”>Home</a>
+   <a href="/">Home</a>
    {{#if isConnectedAndActive}}
-   <a href=“/profile”>Profile</a>
-   <a href=“/new-request”>Add a Request</a>
-   <a href=“/auth/logout”>Logout</a>
+   <a href="/profile">Profile</a>
+   <a href="/new-request">Add a Request</a>
+   <a href="/auth/logout">Logout</a>
    {{else}}
-   <a href=“/auth/login”>Login</a>
-   <a href=“/auth/signup”>Signup</a>
+   <a href="/auth/login">Login</a>
+   <a href="/auth/signup">Signup</a>
    {{/if}}
  </nav>
 
