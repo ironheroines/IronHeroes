@@ -20,20 +20,31 @@ mongoose
 
 let users = [
   {
-    username: "NotASuperhero",
-    password: bcrypt.hashSync("hero", bcrypt.genSaltSync(bcryptSalt)),
-    email: "test@test.com"
-  },
-  {
-    username: "Catwoman",
-    password: "meow",
-    email: "kitty@cat.com",
-    status: "Active",
-    pictureUrl: "http://clipart-library.com/clipart/230252.htm"
-    }
+    username: "Spiderman",
+    password: bcrypt.hashSync("spider", bcrypt.genSaltSync(bcryptSalt)),
+    email: "spider@man.com",
+    status: 'Active',
+    pictureUrl: 'http://clipart-library.com/images/5cRK67XMi.png',
+    isSuperHero: true,
+    skills: ["wrist web-shooters", "cling to most solid surfaces"],
+  },{
+    username: "Ironman",
+    password: bcrypt.hashSync("pepper", bcrypt.genSaltSync(bcryptSalt)),
+    email: "iron@man.com",
+    status: 'Active',
+    pictureUrl: "/public/images/IH_Jan1930",
+    // 'https://b.kisscc0.com/20180720/wve/kisscc0-iron-man-s-armor-spider-man-download-ironman-5b526c7f38b4b3.9306334015321283832323.jpg',
+    isSuperHero: true,
+    skills: ["supersonic flight", "regenerative life support", "energy repulsor", "recaps"]
+  },{
+    username: "Thor",
+    password: bcrypt.hashSync("hammer", bcrypt.genSaltSync(bcryptSalt)),
+    email: "thor@thor.com",
+    status: 'Active',
+    pictureUrl: 'https://scontent-lhr3-1.cdninstagram.com/vp/bc749ae7a0d25e13c953cc7062bcfaa2/5CFF01AA/t51.2885-15/e35/47692377_2004214382998139_1864336324419116359_n.jpg?_nc_ht=scontent-lhr3-1.cdninstagram.com&se=7&ig_cache_key=MTk1MzAwNDUyMzg5NTUwODI5OA%3D%3D.2',
+    isSuperHero: true,
+    skills: ["weather manipulation", "flight", "dimensional transportation", "electric manipulation", "jQuery"]
   }
-
-
 ]
 
 User.deleteMany()

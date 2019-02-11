@@ -6,7 +6,6 @@ const userSchema = new Schema({
  username: String,
  password: String,
  email: {type: String, required: true},
- name: String,
  status: {
    type: String,
    enum: ['Pending Confirmation', 'Active'],
@@ -14,6 +13,7 @@ const userSchema = new Schema({
  },
  pictureUrl: String,
  isSuperHero: Boolean,
+ skills: [String],
  // confirmationCode: {type: String, required: true, unique: true},
  }, {
  timestamps: {

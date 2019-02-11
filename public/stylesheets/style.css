@@ -35,4 +35,11 @@ nav a:hover {
   margin: 0 36px 0 0;
   display: inline-block; }
 
+img {
+  width: 75px; }
+
+#hero {
+  width: 50%;
+  padding: 100px; }
+
 /*# sourceMappingURL=style.css.map */
