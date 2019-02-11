@@ -23,7 +23,17 @@ let users = [
     username: "NotASuperhero",
     password: bcrypt.hashSync("hero", bcrypt.genSaltSync(bcryptSalt)),
     email: "test@test.com"
+  },
+  {
+    username: "Catwoman",
+    password: "meow",
+    email: "kitty@cat.com",
+    status: "Active",
+    pictureUrl: "http://clipart-library.com/clipart/230252.htm"
+    }
   }
+
+
 ]
 
 User.deleteMany()
