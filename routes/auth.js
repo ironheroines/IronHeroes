@@ -2,6 +2,7 @@ const express = require("express");
 const passport = require('passport');
 const router = express.Router();
 const User = require("../models/User");
+const transporter = require('../helpers/transporter');
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
@@ -58,25 +59,27 @@ router.post("/signup", (req, res, next) => {
  
     let message = `
     Hello ${username}.
-    To confirm your email, please go to this link: ${process.env.BASE_URL}/auth/confirm/${token}
+    To confirm your account with IronHeroes, please click: <a href="${process.env.BASE_URL}/auth/confirm/${token}">here</a>
     `
  
     newUser.save()
     .then(() => {
-      passport.authenticate('local', {
-        successRedirect: "/",
-        failureRedirect: "/auth/login",
-        failureFlash: true,
-        passReqToCallback: true
-      // transporter.sendMail({
-      //   from: '"Charlotte" <charlotte.treuse7fff00@gmail.com>',
-      //   to: email,
-      //   subject: 'Validate your account',
-      //   text: message,
-      //   html: `<b>${message}</b>`
-      })(req, res, function () {
+      // passport.authenticate('local', {
+      //   successRedirect: "/",
+      //   failureRedirect: "/auth/login",
+      //   failureFlash: true,
+      //   passReqToCallback: true
+      transporter.sendMail({
+        from: '"IronHeroes"',
+        to: email,
+        subject: 'Validate your account',
+        text: message,
+        html: `<b>${message}</b>`
+      })
+      .then(() => {
       res.redirect('/');
-    })})
+      }) 
+    })
     .catch(err => {
       res.render("auth/signup", { message: "Something went wrong" });
     })
@@ -98,12 +101,12 @@ router.post("/signup", (req, res, next) => {
       if (user) {
         // to log in the user found in the database:
         req.logIn(user, () => {
-        res.render("auth/confirmation-success", {user,
-        isConnectedAndActive: true //to override a value defined by a previous middleware
+        res.render("/", {user,
+        isConnected: true //to override a value defined by a previous middleware
           })
         })
       }
-      else res.render("auth/confirmation-failed");
+      else res.render("/");
     })
   .catch(err => next(err))
  });
@@ -114,5 +117,7 @@ router.post("/signup", (req, res, next) => {
   res.redirect("/");
  });
  
- 
+
+
+
  module.exports = router;

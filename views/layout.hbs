@@ -14,20 +14,17 @@
 
 <body>
 
-  <nav>
-    <a href="/">Home</a>
-    {{#if isConnectedAndActive}}
-    <a href="/profile">Profile</a>
-    <a href="/new-helpcall">New Request</a>
-    <a href="/auth/logout">Logout</a>
-    {{else}}
-    <a href="/auth/login">Login</a>
-    <a href="/auth/signup">Signup</a>
-    <a href="/find-super-hero">Superheroes</a>
-    {{/if}}
-  </nav>
+ <nav>
+   <a href="/">Home</a>
+   <a href="/new-helpcall">New Request</a>
+   <a href="/auth/logout">Logout</a>
+   <a href="/auth/login">Login</a>
+   <a href="/auth/signup">Signup</a>
+   <a href="/find-super-hero">Superheroes</a>
+   <a href="/users/{{user._id}}/edit-user">Profile</a>
+ </nav>
 
-  {{{body}}}
+{{{body}}}
 
 </body>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
