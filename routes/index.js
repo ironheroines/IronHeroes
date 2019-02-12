@@ -4,12 +4,12 @@ const {checkConnectedAndActive} = require('../helpers/middlewares')
 var User = require("../models/User")
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', (req, res, next) => {
  res.render('index');
 });
 
 
-router.get('/find-super-hero', (req,res,next)=> {
+router.get('/find-super-hero', checkConnectedAndActive, (req,res,next)=> {
  //let user = req.user // When connected to database, req.user is a document with the information of the logged in user
  User.find()
   .then(user => {

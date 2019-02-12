@@ -2,6 +2,7 @@ const express = require("express");
 const passport = require('passport');
 const router = express.Router();
 const User = require("../models/User");
+const transporter = require('../helpers/transporter');
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
@@ -63,17 +64,17 @@ router.post("/signup", (req, res, next) => {
  
     newUser.save()
     .then(() => {
-      passport.authenticate('local', {
-        successRedirect: "/",
-        failureRedirect: "/auth/login",
-        failureFlash: true,
-        passReqToCallback: true
-      // transporter.sendMail({
-      //   from: '"Charlotte" <charlotte.treuse7fff00@gmail.com>',
-      //   to: email,
-      //   subject: 'Validate your account',
-      //   text: message,
-      //   html: `<b>${message}</b>`
+      // passport.authenticate('local', {
+      //   successRedirect: "/",
+      //   failureRedirect: "/auth/login",
+      //   failureFlash: true,
+      //   passReqToCallback: true
+      transporter.sendMail({
+        from: '"Charlotte" <charlotte.treuse7fff00@gmail.com>',
+        to: email,
+        subject: 'Validate your account',
+        text: message,
+        html: `<b>${message}</b>`
       })(req, res, function () {
       res.redirect('/');
     })})
