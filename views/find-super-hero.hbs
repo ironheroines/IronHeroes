@@ -1,10 +1,23 @@
 <h2>Superheroes</h2>
+<div class="container">
+  <div class="card-deck">
 
-{{#each user}}
-<div class="row" id="hero">
-  <div><img src="{{pictureUrl}}" alt=""></div>
-  <h3>{{username}}</h3>
-  <p>{{skills}}</p>
-  <button type="button" class="btn btn-outline-success">Request Me!</button>
+    {{#each user}}
+    {{!-- <div class="col"> --}}
+    <div class="hero card m-2">
+      <h3>{{username}}</h3>
+      <div class="imgcontainer">
+        <img class="img-fluid rounded-circle" src="{{pictureUrl}}" alt="">
+      </div>
+      {{#each skills}}
+      <div>{{this}}</div>
+      {{/each}}
+      <div>
+        <button type="button" class="btn btn-outline-success">Request Me!</button>
+      </div>
+    </div>
+    {{!-- </div> --}}
+    {{/each}}
+
+  </div>
 </div>
-{{/each}}
