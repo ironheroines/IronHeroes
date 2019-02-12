@@ -3,7 +3,7 @@ const Schema   = mongoose.Schema;
 
 const helpcallSchema = new Schema({
  subject: {type: String, required: true},
- skillsRequired: String,
+ details: String,
  status: {
    type: String,
    enum: ['Open', 'Claimed', 'Closed'],

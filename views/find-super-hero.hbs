@@ -3,6 +3,7 @@
   <div class="card-deck">
 
     {{#each user}}
+    {{#if isSuperHero}}
     {{!-- <div class="col"> --}}
     <div class="hero card m-2">
       <h3>{{username}}</h3>
@@ -13,11 +14,13 @@
       <div>{{this}}</div>
       {{/each}}
       <div>
-        <button type="button" class="btn btn-outline-success">Request Me!</button>
+        <a href="/new-request/{{_id}}" class="btn btn-outline-success">Request Me!</a>
       </div>
     </div>
     {{!-- </div> --}}
+    {{/if}}
     {{/each}}
+    
 
   </div>
 </div>
