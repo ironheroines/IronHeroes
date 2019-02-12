@@ -59,7 +59,7 @@ router.post("/signup", (req, res, next) => {
  
     let message = `
     Hello ${username}.
-    To confirm your email, please go to this link: ${process.env.BASE_URL}/auth/confirm/${token}
+    To confirm your account with IronHeroes, please click here: <a href="${process.env.BASE_URL}/auth/confirm/${token}</a>
     `
  
     newUser.save()
@@ -70,7 +70,7 @@ router.post("/signup", (req, res, next) => {
       //   failureFlash: true,
       //   passReqToCallback: true
       transporter.sendMail({
-        from: '"Charlotte" <charlotte.treuse7fff00@gmail.com>',
+        from: '"IronHeroes"',
         to: email,
         subject: 'Validate your account',
         text: message,
@@ -117,5 +117,7 @@ router.post("/signup", (req, res, next) => {
   res.redirect("/");
  });
  
- 
+
+
+
  module.exports = router;

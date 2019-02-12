@@ -27,32 +27,24 @@
 
   <input id="email" value="{{user.email}}" type="email" class="form-control col-12 border border-info shadow p-3 mb-5 bg-white rounded" name="email" placeholder="Your email">
 
-  <button class="rounded bg-info text-white" >Accept changes</button>
+  <a class="btn rounded bg-info text-white" ><i class="fas fa-pencil-alt"></i> Accept changes</a>
   <br><br><br>
 
-
-  <a class="btn rounded border-danger text-danger" href="/auth/forgot">Forgot your password?</a>  
-
-
-</form>
-  <br><br>
-  {{#if message }}
-    <div class="error-message">{{ message }}</div>
-  {{/if}}
-
-
-
-  <p>			
 			{{!-- <a href="/users/{{user._id}}/edit">
 				<i class="fas fa-pencil-alt"></i>
 				Edit
         </a>
         <br>		 --}}
-			<a href="/users/{{user._id}}/delete">
+			<a class="btn rounded bg-info text-danger" href="/users/{{user._id}}/delete">
 				<i class="fas fa-trash-alt"></i>
-				Delete Your Profile
+				 Delete Profile
         </a>
         <br>		 
-	</p>			
+</form>
+  <br><br>
+  {{#if message }}
+    <div class="error-message">{{ message }}</div>
+  {{/if}}
+	
 
 </div>
