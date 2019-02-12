@@ -20,8 +20,6 @@ router.get('/find-super-hero', (req,res,next)=> {
 })
  
 
-
-
 // goes to make a request, after checking if user is logged in & active
 router.get("/new-request/:id", checkConnectedAndActive, (req, res, next)=> {
   res.render('new-request')
