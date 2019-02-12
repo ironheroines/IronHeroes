@@ -75,9 +75,11 @@ router.post("/signup", (req, res, next) => {
         subject: 'Validate your account',
         text: message,
         html: `<b>${message}</b>`
-      })(req, res, function () {
+      })
+      .then(() => {
       res.redirect('/');
-    })})
+      }) 
+    })
     .catch(err => {
       res.render("auth/signup", { message: "Something went wrong" });
     })
@@ -99,12 +101,12 @@ router.post("/signup", (req, res, next) => {
       if (user) {
         // to log in the user found in the database:
         req.logIn(user, () => {
-        res.render("auth/confirmation-success", {user,
-        isConnectedAndActive: true //to override a value defined by a previous middleware
+        res.render("find-super-hero", {user,
+        isConnected: true //to override a value defined by a previous middleware
           })
         })
       }
-      else res.render("auth/confirmation-failed");
+      else res.render("/");
     })
   .catch(err => next(err))
  });

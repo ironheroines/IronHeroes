@@ -5,11 +5,11 @@ var User = require("../models/User")
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
- res.render('index');
+ res.render('index', {user: req.user});
 });
 
 
-router.get('/find-super-hero', checkConnectedAndActive, (req,res,next)=> {
+router.get('/find-super-hero', (req,res,next)=> {
  //let user = req.user // When connected to database, req.user is a document with the information of the logged in user
  User.find()
   .then(user => {
@@ -22,15 +22,46 @@ router.get('/find-super-hero', checkConnectedAndActive, (req,res,next)=> {
 
 
 
-// find Superhero by ones ID
-router.get("/users/offer/:id", (req, res, next)=> {
- console.log("DEBUG")
+// goes to make a request, after checking if user is logged in & active
+router.get("/users/:id/new-request", checkConnectedAndActive, (req, res, next)=> {
  User.findById(req.params.id)
    .then(user => {
 
-     console.log("DEBUG profile page", user)
+     console.log(user)
 });
 })
+
+// Edit User
+router.get('/users/:id/edit-user', checkConnectedAndActive, (req, res, next) => {
+  User.findById(req.params.id)		
+	.then(user => {    
+    if(!(req.user._id == req.params.id))
+      res.redirect('/');
+    else
+      res.render('edit-user', { user });
+	})		
+});
+
+router.post('/users/:id/edit-user', (req, res, next) => { 
+  User.findByIdAndUpdate(req.params.id, {
+  username: req.body.username,
+  email: req.body.email,
+  })
+	.then(user => {	
+    res.redirect('/'+ id)	
+  })
+});
+
+// Delete User
+router.get('/users/:id/delete', (req, res, next) => {
+  if(!(req.user._id == req.params.id))
+    res.redirect('/');
+  else
+    User.findByIdAndRemove(req.params.id)
+    .then(user => {	
+      res.redirect('/')
+    })	
+});
 
 
 // //POST new request to the database

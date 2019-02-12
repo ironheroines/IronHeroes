@@ -1,0 +1,58 @@
+<div class="form-add-title text-dark">
+	<div>
+    <h3>Hello {{user.username}},</h3>
+    <h4>welcome to your profile page!</h4>
+	</div>
+  <br> <br>
+
+  {{#if error}}					
+	<div class="alert-red">				
+		{{error}}			
+	</div>				
+{{/if}}
+
+
+<div class ="form-add text-dark">
+<form action="/users/{{user._id}}/edit" method="post" enctype="multipart/form-data">	
+  {{#if user.pictureUrl}}
+    <img src="{{user.pictureUrl}}" alt="user's picture" height="150px">
+    <br> <br>
+  {{/if}}
+
+  
+  <label for="username">Username</label>
+  <input id="username" value="{{user.username}}" type="text" class="form-control col-12 border border-info shadow p-3 mb-5 bg-white rounded" name="username" placeholder="JonSnow">
+
+  <label for="email">Email</label>   <br>
+
+  <input id="email" value="{{user.email}}" type="email" class="form-control col-12 border border-info shadow p-3 mb-5 bg-white rounded" name="email" placeholder="Your email">
+
+  <button class="rounded bg-info text-white" >Accept changes</button>
+  <br><br><br>
+
+
+  <a class="btn rounded border-danger text-danger" href="/auth/forgot">Forgot your password?</a>  
+
+
+</form>
+  <br><br>
+  {{#if message }}
+    <div class="error-message">{{ message }}</div>
+  {{/if}}
+
+
+
+  <p>			
+			{{!-- <a href="/users/{{user._id}}/edit">
+				<i class="fas fa-pencil-alt"></i>
+				Edit
+        </a>
+        <br>		 --}}
+			<a href="/users/{{user._id}}/delete">
+				<i class="fas fa-trash-alt"></i>
+				Delete Your Profile
+        </a>
+        <br>		 
+	</p>			
+
+</div>

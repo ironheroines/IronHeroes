@@ -1,10 +1,12 @@
 <h2>Superheroes</h2>
 
 {{#each user}}
+{{#if isSuperHero}}
 <div class="row" id="hero">
   <div><img src="{{pictureUrl}}" alt=""></div>
   <h3>{{username}}</h3>
   <p>{{skills}}</p>
-  <button type="button" class="btn btn-outline-success">Request Me!</button>
+  <a href="/new-request" role="button" class="btn btn-outline-success">Request Me!</a>
 </div>
+{{/if}}
 {{/each}}
