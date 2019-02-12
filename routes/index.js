@@ -23,10 +23,9 @@ router.get('/find-super-hero', (req,res,next)=> {
 
 
 // goes to make a request, after checking if user is logged in & active
-router.get("/users/:id/new-request", checkConnectedAndActive, (req, res, next)=> {
+router.get("/new-request", checkConnectedAndActive, (req, res, next)=> {
  User.findById(req.params.id)
    .then(user => {
-
      console.log(user)
 });
 })

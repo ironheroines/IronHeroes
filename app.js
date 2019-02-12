@@ -74,6 +74,16 @@ app.use(session({
 }))
 app.use(flash());
 require('./passport')(app);
+
+// This middleware gives the variable "isConnected" to the view
+app.use((req,res, next) => {
+  res.locals.isConnected = !!req.user
+  if (req.user) {
+    res.locals.currentUserId = req.user._id
+    res.locals.username = req.user.username
+  }
+  next() 
+})
     
 
 const index = require('./routes/index');
