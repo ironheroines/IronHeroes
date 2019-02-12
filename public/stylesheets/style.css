@@ -7026,7 +7026,19 @@ body {
   font: 14px;
   font-family: 'Bangers', cursive;
   /* font-family: 'Verdana', “Lucida Grande”, Helvetica, Arial, sans-serif; */
-  text-align: center; }
+  text-align: center;
+  background-image: url("/images/Superheroes_Background.jpg"); }
+
+body:before {
+  content: "";
+  display: block;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  background-color: rgba(255, 255, 255, 0.85); }
 
 a {
   color: #00b7ff; }
@@ -7035,6 +7047,10 @@ nav {
   display: block;
   background-color: teal;
   overflow: hidden; }
+  nav .header-left {
+    float: left; }
+  nav .header-right {
+    float: right; }
 
 nav a {
   float: left;
@@ -7071,13 +7087,18 @@ img {
   justify-content: center; }
 
 .hero {
-  padding: 50px;
+  padding: 25px;
   min-width: 300px;
   max-width: 300px; }
+  .hero .request-button {
+    margin-top: 15px; }
 
 .imgcontainer img {
   height: 100px;
   width: 100px;
   object-fit: cover; }
+
+.clearfix {
+  clear: both; }
 
 /*# sourceMappingURL=style.css.map */
