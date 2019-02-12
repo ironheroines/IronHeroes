@@ -1,12 +1,22 @@
-<h2>Superheroes</h2>
+<div class="container">
+<h2 class="my-4">Superheroes</h2>
 
 {{#each user}}
 {{#if isSuperHero}}
+<div class="border border-success rounded w-75 m-2 bg-light">
 <div class="row" id="hero">
-  <div><img src="{{pictureUrl}}" alt=""></div>
+  <div><img class="img-fluid rounded-circle" src="{{pictureUrl}}" alt=""></div>
   <h3>{{username}}</h3>
-  <p>{{skills}}</p>
-  <a href="/new-request" role="button" class="btn btn-outline-success">Request Me!</a>
-</div>
+  <p><ul class="list-unstyled"><h6>Skills:</h6>
+  <blockquote>
+    {{#each skills}}
+    <li class="border border-info rounded">{{this}}</li>
+    {{/each}}
+    </blockquote>
+  </ul></p>
+  
+  <a href="/new-request" role="button" class="btn btn-outline-success bg-warning">Request Me!</a>
+</div></div>
 {{/if}}
 {{/each}}
+</div>

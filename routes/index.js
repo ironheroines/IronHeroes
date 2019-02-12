@@ -42,7 +42,7 @@ router.get('/users/:id/edit-user', checkConnectedAndActive, (req, res, next) => 
 	})		
 });
 
-router.post('/users/:id/edit', (req, res, next) => { 
+router.post('/users/:id/edit-user', (req, res, next) => { 
   User.findByIdAndUpdate(req.params.id, {
   username: req.body.username,
   email: req.body.email,

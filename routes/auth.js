@@ -59,7 +59,7 @@ router.post("/signup", (req, res, next) => {
  
     let message = `
     Hello ${username}.
-    To confirm your account with IronHeroes, please click here: <a href="${process.env.BASE_URL}/auth/confirm/${token}</a>
+    To confirm your account with IronHeroes, please click: <a href="${process.env.BASE_URL}/auth/confirm/${token}">here</a>
     `
  
     newUser.save()
@@ -101,7 +101,7 @@ router.post("/signup", (req, res, next) => {
       if (user) {
         // to log in the user found in the database:
         req.logIn(user, () => {
-        res.render("find-super-hero", {user,
+        res.render("/", {user,
         isConnected: true //to override a value defined by a previous middleware
           })
         })
