@@ -1,7 +1,8 @@
 @charset "UTF-8";
 body {
   padding: 50px;
-  font: 14px “Lucida Grande”, Helvetica, Arial, sans-serif; }
+  font: 14px;
+  font-family: "Comic Sans MS", "Comic Sans", "Verdana", “Lucida Grande”, Helvetica, Arial, sans-serif; }
 
 a {
   color: #00B7FF; }
@@ -36,7 +37,9 @@ nav a:hover {
   display: inline-block; }
 
 img {
-  width: 75px; }
+  box-shadow: #def9de;
+  width: 75px;
+  border-radius: 80%; }
 
 #hero {
   width: 50%;

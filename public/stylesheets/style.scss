@@ -1,6 +1,11 @@
 body {
   padding: 50px;
-  font: 14px “Lucida Grande”, Helvetica, Arial, sans-serif;
+  font: 14px;
+  font-family: "Comic Sans MS", "Comic Sans", "Verdana", “Lucida Grande”, Helvetica, Arial, sans-serif;
+  // background-image: url("/images/Superheroes_Background.jpg");
+  // background-size: cover;
+  // height: 100px;
+
  }
  
  a {
@@ -43,7 +48,9 @@ body {
  }
 
  img {
+   box-shadow: #def9de;
    width: 75px;
+   border-radius: 80%;
  }
 
  #hero {
