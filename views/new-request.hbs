@@ -2,6 +2,7 @@
 <h2 class="my-4">Add a new Request</h2>
 
 <form action="/new-helpcall" method="POST" id="form-container">
+  <input type="hidden" name="superhero" value="{{superhero}}">
   <label for="subject">Subject</label>
   <input class="form-control" type="text" placeholder="What is your request?" name="subject" id="" > <br>
 
@@ -15,4 +16,9 @@
 
   <button type="submit" class="btn btn-outline-info">Submit Request</button>
 </form>
+
+{{#each helpcalls}}
+  {{_owner}}
+  {{subject}}
+{{/each}}
 </div>
