@@ -23,13 +23,22 @@ router.get('/find-super-hero', (req,res,next)=> {
 
 
 // goes to make a request, after checking if user is logged in & active
-router.get("/users/:id/new-request", checkConnectedAndActive, (req, res, next)=> {
- User.findById(req.params.id)
-   .then(user => {
-
-     console.log(user)
-});
+router.get("/new-request/:id", checkConnectedAndActive, (req, res, next)=> {
+  res.render('new-request')
 })
+
+router.post('/new-helpcall', (req, res, next) => { 
+  console.log('DEBUG')
+  // Helpcall.create({
+  // subject: req.body.subject,
+  // details: req.body.details,
+  // address: req.body.address,
+  // })
+	// .then(user => {	
+  //   res.redirect('/')	
+  // })
+});
+
 
 // Edit User
 router.get('/users/:id/edit-user', checkConnectedAndActive, (req, res, next) => {
@@ -48,7 +57,7 @@ router.post('/users/:id/edit-user', (req, res, next) => {
   email: req.body.email,
   })
 	.then(user => {	
-    res.redirect('/'+ id)	
+    res.redirect('/')	
   })
 });
 

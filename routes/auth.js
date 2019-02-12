@@ -54,7 +54,7 @@ router.post("/signup", (req, res, next) => {
       username,
       password: hashPass,
       email, // same as: email:email
-      confirmationCode:token
+      confirmationCode: token
     });
  
     let message = `
