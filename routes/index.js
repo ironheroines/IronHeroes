@@ -27,16 +27,17 @@ router.get("/new-request/:id", checkConnectedAndActive, (req, res, next)=> {
   res.render('new-request')
 })
 
-router.post('/new-helpcall', (req, res, next) => { 
-  console.log('DEBUG')
-  // Helpcall.create({
-  // subject: req.body.subject,
-  // details: req.body.details,
-  // address: req.body.address,
-  // })
-	// .then(user => {	
-  //   res.redirect('/')	
-  // })
+// Create new Helpcall request
+router.post('/new-helpcall', (req, res) => { 
+  const newHelpcall = {
+   subject: req.body.subject,
+   details: req.body.details,
+   address: req.body.address,
+   }
+  new Helpcall(newHelpcall).save()
+	 .then(user => {	
+     res.redirect('/')	
+   })
 });
 
 

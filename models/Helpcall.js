@@ -9,7 +9,7 @@ const helpcallSchema = new Schema({
    enum: ['Open', 'Claimed', 'Closed'],
    default: 'Open',
  },
- address: {type: String, required: true},
+ address: type: String,
  location: {
    type: {
      type: String,
@@ -17,8 +17,7 @@ const helpcallSchema = new Schema({
      default: 'Point',
    },
    coordinates: {
-     type: [Number],
-     required: true,
+     type: [Number]
    }
  },
  _owner: {type: Schema.Types.ObjectId, ref: "User"},
