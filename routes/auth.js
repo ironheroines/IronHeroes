@@ -101,12 +101,12 @@ router.post("/signup", (req, res, next) => {
       if (user) {
         // to log in the user found in the database:
         req.logIn(user, () => {
-        res.render("index", {user,
-        isConnected: true //to override a value defined by a previous middleware
+        res.render("/", {user,
+        isConnectedAndActive: true //to override a value defined by a previous middleware
           })
         })
       }
-      else res.redirect("/auth/signup");
+      else res.render("/auth/signup");
     })
   .catch(err => next(err))
  });

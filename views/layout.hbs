@@ -18,11 +18,11 @@
   <div class="header-left">
     <a href="/">Home</a>
     <a href="/find-super-hero">Superheroes</a>
-    <a href="/new-request">New Request</a>
+    {{!-- <a href="/new-request/">New Request</a> --}}
   </div>
   <div class="header-right">
-    {{#if user}}
-    <a href="/users/{{user._id}}/edit-user">Profile</a>
+    {{#if isConnectedAndActive}}
+    <a href="/users/{{user._id}}/profile">Profile</a>
     <a href="/auth/logout">Logout</a>
     {{else}}
     <a href="/auth/login">Login</a>

@@ -76,14 +76,21 @@ app.use(flash());
 require('./passport')(app);
 
 // This middleware gives the variable "isConnected" to the view
-app.use((req,res, next) => {
-  res.locals.isConnected = !!req.user
-  if (req.user) {
-    res.locals.currentUserId = req.user._id
-    res.locals.username = req.user.username
-  }
-  next() 
+app.use((req,res,next) => {
+  console.log('Hello everyone!!');
+  // This code is executed at every request
+  // It defines a view variable isConnectedAndActive = true or false
+  res.locals.isConnectedAndActive = req.user && req.user.status === 'Active'
+  next()
 })
+// app.use((req,res, next) => {
+//   res.locals.isConnected = !!req.user
+//   if (req.user) {
+//     res.locals.currentUserId = req.user._id
+//     res.locals.username = req.user.username
+//   }
+//   next() 
+// })
     
 
 const index = require('./routes/index');

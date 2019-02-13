@@ -53,17 +53,17 @@ router.post('/new-helpcall', (req, res, next) => {
 
 
 // Edit User
-router.get('/users/:id/edit-user', checkConnectedAndActive, (req, res, next) => {
+router.get('/users/:id/profile', checkConnectedAndActive, (req, res, next) => {
   User.findById(req.params.id)		
 	.then(user => {    
     if(!(req.user._id == req.params.id))
       res.redirect('/');
     else
-      res.render('edit-user', { user });
+      res.render('profile', { user });
 	})		
 });
 
-router.post('/users/:id/edit-user', (req, res, next) => { 
+router.post('/users/:id/profile', (req, res, next) => { 
   User.findByIdAndUpdate(req.params.id, {
   username: req.body.username,
   email: req.body.email,
