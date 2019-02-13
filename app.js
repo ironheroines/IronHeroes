@@ -15,7 +15,7 @@ const flash = require('connect-flash');
 
 mongoose
   .connect(
-    'mongodb://heroku_jp94432s:4u5h42bon057fegrjgju6sv464@ds149754.mlab.com:49754/heroku_jp94432s',
+    process.env.MONGODB_URI,
     { useNewUrlParser: true }
   )
   .then(x => {
