@@ -4,11 +4,27 @@
 body {
   font: 14px;
   font-family: 'Bangers', cursive;
-  /* font-family: 'Verdana', “Lucida Grande”, Helvetica, Arial, sans-serif; */
+  text-shadow: 1px 2px 4px #008080;
   text-align: center;
-  // background-image: url("/images/Superheroes_Background.jpg");
-  // background-size: cover;
+  background-image: url("/images/Superheroes_Background.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  // background-color: rgba(255, 255, 255, 0.2);
   // height: 100px;
+}
+
+body:before {
+    content: "";
+    display: block;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    background-color: rgba(255, 255, 255, 0.85);
 }
 
 a {
@@ -19,6 +35,14 @@ nav {
   display: block;
   background-color: teal;
   overflow: hidden;
+
+  .header-left {
+    float: left;
+  }
+
+  .header-right {
+    float: right;
+  }
 }
 
 nav a {
@@ -47,7 +71,7 @@ nav a:hover {
 
 .emailLabel {
   margin: 0 36px 0 0;
-  display: inline-block;
+  //display: inline-block;
 }
 
 img {
@@ -64,17 +88,24 @@ img {
 
 .hero {
   //   width: 50%;
-  padding: 50px;
+  padding: 25px;
   min-width: 300px;
   max-width: 300px;
   //   border: 1px solid #eee;
   //   border-radius: 10px;
   //   box-shadow: 2px 2px 10px 0 #eee;
   //   list-style-type: none;
+  .request-button {
+    margin-top: 15px;
+  }
 }
 
 .imgcontainer img {
   height: 100px;
   width: 100px;
   object-fit: cover;
+}
+
+.clearfix {
+  clear: both;
 }

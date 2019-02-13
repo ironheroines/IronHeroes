@@ -4,6 +4,6 @@ module.exports = {
     if (req.user && req.user.status === 'Active')
       next()
     else
-      res.redirect('/')
+      res.redirect('/auth/login')
   }
  }

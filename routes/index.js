@@ -1,6 +1,8 @@
 const express = require('express');
+const mongoose = require("mongoose")
 const router = express.Router();
 const {checkConnectedAndActive} = require('../helpers/middlewares')
+var Helpcall = require("../models/Helpcall")
 var User = require("../models/User")
 
 /* GET home page. */
@@ -20,24 +22,33 @@ router.get('/find-super-hero', (req,res,next)=> {
 })
  
 
-
-
 // goes to make a request, after checking if user is logged in & active
 router.get("/new-request/:id", checkConnectedAndActive, (req, res, next)=> {
-  res.render('new-request')
+  const userId = mongoose.Types.ObjectId(req.params.id);
+  Helpcall.find({
+    superhero: userId,
+  }) 
+  .then(helpcalls => {
+    console.log("DEBUG", helpcalls);
+    res.render('new-request', {
+      helpcalls,
+      superhero: req.params.id,
+    });
+  })
 })
 
-// Create new Helpcall request
-router.post('/new-helpcall', (req, res) => { 
-  const newHelpcall = {
-   subject: req.body.subject,
-   details: req.body.details,
-   address: req.body.address,
-   }
-  new Helpcall(newHelpcall).save()
-	 .then(user => {	
-     res.redirect('/')	
-   })
+router.post('/new-helpcall', (req, res, next) => { 
+  // console.log('DEBUG')
+  Helpcall.create({
+  subject: req.body.subject,
+  details: req.body.details,
+  superhero: req.body.superhero,
+  _owner: req.user._id,
+  // address: req.body.address,
+  })
+	.then(user => {	
+    res.redirect('/find-super-hero')	
+  })
 });
 
 

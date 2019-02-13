@@ -9,7 +9,7 @@ const helpcallSchema = new Schema({
    enum: ['Open', 'Claimed', 'Closed'],
    default: 'Open',
  },
- address: type: String,
+ address: String,
  location: {
    type: {
      type: String,
@@ -20,6 +20,9 @@ const helpcallSchema = new Schema({
      type: [Number]
    }
  },
+//  reference to the superhero
+ superhero: { type: Schema.Types.ObjectId, ref: "User" },
+ // reference to the requestor
  _owner: {type: Schema.Types.ObjectId, ref: "User"},
  }, {
  timestamps: {
