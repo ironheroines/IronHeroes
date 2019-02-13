@@ -7067,17 +7067,6 @@ nav a:hover {
   background-color: #ddd;
   color: black; }
 
-.unLabel {
-  margin: 0 7px 0 0;
-  display: inline-block; }
-
-.pwLabel {
-  margin: 0 10px 0 0;
-  display: inline-block; }
-
-.emailLabel {
-  margin: 0 36px 0 0; }
-
 img {
   box-shadow: #def9de;
   /* width: 75px; */

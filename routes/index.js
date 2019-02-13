@@ -54,13 +54,19 @@ router.post('/new-helpcall', (req, res, next) => {
 
 // Edit User
 router.get('/users/:id/profile', checkConnectedAndActive, (req, res, next) => {
-  User.findById(req.params.id)		
-	.then(user => {    
-    if(!(req.user._id == req.params.id))
-      res.redirect('/');
-    else
-      res.render('profile', { user });
-	})		
+  // If the connected user is not the one with the profile
+  if(!(req.user._id == req.params.id)) {
+    res.redirect('/');
+    return;
+  }
+
+  Helpcall.find({_owner: req.params.id})
+    .then(hellpcalls => {
+      User.findById(req.params.id)		
+      .then(user => {    
+        res.render('profile', { user, hellpcalls });
+      })		
+    })
 });
 
 router.post('/users/:id/profile', (req, res, next) => { 

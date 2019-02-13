@@ -1,4 +1,3 @@
-<div class="form-add-title text-dark">
 	<div>
     <h3 class="my-4">Hello {{user.username}},</h3>
     <h4>welcome to your profile page!</h4>
@@ -10,7 +9,24 @@
 		{{error}}			
 	</div>				
 {{/if}}
+<div class="container d-flex flex-column align-items-center">
+  <h5 class="card-deck">Your Requests:</h5>
+{{#each hellpcalls}}
+<div class="card bg-light mb-3" style="max-width: 18rem;">
+  <div class="card-body">
+    <p class="card-text">
+      Subject: {{this.subject}}<br>
+      Details: {{this.details}}<br>
+      Status: {{this.status}}<br>
+    </p>
+  </div>
+</div>
+{{/each}}
 
+
+
+  </h5>
+</div>
 
 <div class ="form-add text-dark">
 <form action="/users/{{user._id}}/edit" method="post" enctype="multipart/form-data">	
@@ -19,14 +35,14 @@
     <br> <br>
   {{/if}}
 
-  
+  <div class ="ml-5 w-50 mx-auto">
   <label for="username">Username</label>
-  <input id="username" value="{{user.username}}" type="text" class="form-control col-12 border border-info shadow p-3 mb-5 bg-white rounded" name="username" placeholder="JonSnow">
+  <input id="username" value="{{user.username}}" type="text" class="form-control col-9 border border-info shadow p-3 ml-5 mb-5 bg-white rounded" name="username" placeholder="Your username">
 
   <label for="email">Email</label>   <br>
 
-  <input id="email" value="{{user.email}}" type="email" class="form-control col-12 border border-info shadow p-3 mb-5 bg-white rounded" name="email" placeholder="Your email">
-
+  <input id="email" value="{{user.email}}" type="email" class="form-control col-9 border border-info shadow p-3 ml-5 mb-5 bg-white rounded" name="email" placeholder="Your email">
+  </div>
   <a class="btn rounded bg-info text-white" ><i class="fas fa-pencil-alt"></i> Accept changes</a>
   <br><br><br>
 
