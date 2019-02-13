@@ -9,10 +9,10 @@
 		{{error}}			
 	</div>				
 {{/if}}
-<div class="container d-flex flex-column align-items-center">
-  <h5 class="card-deck">Your Requests:</h5>
+<h5 class="container d-flex flex-column align-items-center">Your Requests:</h5>
+  <div class="card-deck row">
 {{#each hellpcalls}}
-<div class="card bg-light mb-3" style="max-width: 18rem;">
+<div class="card bg-light mb-3 col" style="max-width: 18rem;">
   <div class="card-body">
     <p class="card-text">
       Subject: {{this.subject}}<br>
@@ -25,8 +25,8 @@
 
 
 
-  </h5>
-</div>
+  </div>
+</h5>
 
 <div class ="form-add text-dark">
 <form action="/users/{{user._id}}/edit" method="post" enctype="multipart/form-data">	
@@ -39,7 +39,7 @@
   <label for="username">Username</label>
   <input id="username" value="{{user.username}}" type="text" class="form-control col-9 border border-info shadow p-3 ml-5 mb-5 bg-white rounded" name="username" placeholder="Your username">
 
-  <label for="email">Email</label>   <br>
+  <label for="email">Email</label> <br>
 
   <input id="email" value="{{user.email}}" type="email" class="form-control col-9 border border-info shadow p-3 ml-5 mb-5 bg-white rounded" name="email" placeholder="Your email">
   </div>
