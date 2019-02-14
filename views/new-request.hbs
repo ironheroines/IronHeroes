@@ -18,7 +18,10 @@
 </form>
 
 {{#each helpcalls}}
-  {{_owner}}
+  {{!-- {{_owner}} --}}
+  Helpcall.findOne({"_owner"})
+    .populate("user")
+  populate("user")
   {{subject}}
 {{/each}}
 </div>

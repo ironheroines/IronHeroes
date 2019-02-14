@@ -10,7 +10,7 @@ const User = require('../models/User');
 const bcryptSalt = 10;
 
 mongoose
-  .connect('mongodb://localhost/ironheroes', { useNewUrlParser: true })
+  .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
   .then(x => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
@@ -30,7 +30,8 @@ let users = [
     pictureUrl: 'images/spiderman.png',
     isSuperHero: true,
     skills: ["wrist web-shooters", "cling to most solid surfaces"],
-  },{
+  },
+  {
     username: "Aaronman",
     password: bcrypt.hashSync("pepper", bcrypt.genSaltSync(bcryptSalt)),
     email: "iron@man.com",
@@ -40,7 +41,8 @@ let users = [
     // 'https://b.kisscc0.com/20180720/wve/kisscc0-iron-man-s-armor-spider-man-download-ironman-5b526c7f38b4b3.9306334015321283832323.jpg',
     isSuperHero: true,
     skills: ["supersonic flight", "regenerative life support", "energy repulsor", "recaps"]
-  },{
+  },
+  {
     username: "Thor",
     password: bcrypt.hashSync("hammer", bcrypt.genSaltSync(bcryptSalt)),
     email: "thor@thor.com",
@@ -56,8 +58,64 @@ let users = [
       'electric manipulation',
       'jQuery'
     ]
-  }
+  },
+  {
+    username: "Makes-Sense",
+    password: bcrypt.hashSync("42", bcrypt.genSaltSync(bcryptSalt)),
+    email: "makes@sense.com",
+    confirmationCode: "00004",
+    status: 'Active',
+    pictureUrl: 'images/https://pbs.twimg.com/profile_images/802537394901778432/EFsZ7VQm_400x400.jpg',
+    isSuperHero: true,
+    skills: [
+      "set pupils into coding trance", 
+      "solving complex tasks"
+    ],
+  },
+  {
+    username: "Batman",
+    password: bcrypt.hashSync("bat", bcrypt.genSaltSync(bcryptSalt)),
+    email: "bat@man.com",
+    confirmationCode: "00005",
+    status: 'Active',
+    pictureUrl: 'https://chrisjohnsdesign.nyc3.digitaloceanspaces.com/nerddomepodcast.com/2016/06/Batman-Rebirth-banner-e1459450194577.jpg',
+    isSuperHero: true,
+    skills: [
+      "rich",
+      "martial artist",
+      "expert detective",
+      "high-tech equipment"
+    ],
+  },
+  {
+    username: "Superman",
+    password: bcrypt.hashSync("kryptonite", bcrypt.genSaltSync(bcryptSalt)),
+    email: "super@man.com",
+    confirmationCode: "00006",
+    status: 'Active',
+    pictureUrl: 'https://i2.wp.com/batman-on-film.com/wp-content/uploads/2018/09/Superman-by-Dan-Jurgens-in-Action-Comics-1000.jpg?zoom=2&fit=1400%2C700&ssl=1',
+    isSuperHero: true,
+    skills: [
+      "flight",
+      "superhuman vision",
+    ],
+  },
+  {
+    username: "Wonderwoman",
+    password: bcrypt.hashSync("feminism", bcrypt.genSaltSync(bcryptSalt)),
+    email: "wonder@woman.com",
+    confirmationCode: "00007",
+    status: 'Active',
+    pictureUrl: 'https://media.wired.com/photos/59375820fbdfa3763bab97ae/master/w_1440,c_limit/GalleryComics_1920x1080_20170531_WW-Annual-1_5903bbd4d223b6.50778583TA.jpg',
+    isSuperHero: true,
+    skills: [
+      "woman who codes",
+      "immortality",
+      "Lasso of Truth"
+    ],
+  },
 ];
+
 
 User.deleteMany()
   .then(() => {
