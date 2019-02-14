@@ -1,66 +1,87 @@
-	<div>
-    <h3 class="my-4">Hello {{user.username}},</h3>
-    <h4>welcome to your profile page!</h4>
-	</div>
-  <br> <br>
-
-  {{#if error}}					
-	<div class="alert-red">				
-		{{error}}			
-	</div>				
-{{/if}}
-<h5 class="container d-flex flex-column align-items-center">Your Requests:</h5>
-  <div class="card-deck row">
-{{#each hellpcalls}}
-<div class="card bg-light mb-3 col" style="max-width: 18rem;">
-  <div class="card-body">
-    <p class="card-text">
-      Subject: {{this.subject}}<br>
-      Details: {{this.details}}<br>
-      Status: {{this.status}}<br>
-    </p>
-  </div>
+<div>
+  <h3 class="my-4">Hello {{user.username}},</h3>
+  <h4>welcome to your profile page!</h4>
 </div>
-{{/each}}
+<br>
 
+{{#if error}}
+<div class="alert-red">
+  {{error}}
+</div>
+{{/if}}
 
-
-  </div>
-</h5>
-
-<div class ="form-add text-dark">
-<form action="/users/{{user._id}}/edit" method="post" enctype="multipart/form-data">	
-  {{#if user.pictureUrl}}
-    <img src="{{user.pictureUrl}}" alt="user's picture" class="img-fluid">
+<div class="form-add text-dark">
+  <form action="/users/{{user._id}}/edit" method="post" enctype="multipart/form-data">
+    {{#if user.pictureUrl}}
+    <img class="superhero-request-img" src="{{user.pictureUrl}}" alt="user's picture" class="img-fluid">
     <br> <br>
-  {{/if}}
+    {{/if}}
 
-  <div class ="ml-5 w-50 mx-auto">
-  <label for="username">Username</label>
-  <input id="username" value="{{user.username}}" type="text" class="form-control col-9 border border-info shadow p-3 ml-5 mb-5 bg-white rounded" name="username" placeholder="Your username">
 
-  <label for="email">Email</label> <br>
 
-  <input id="email" value="{{user.email}}" type="email" class="form-control col-9 border border-info shadow p-3 ml-5 mb-5 bg-white rounded" name="email" placeholder="Your email">
-  </div>
-  <a class="btn rounded bg-info text-white" ><i class="fas fa-pencil-alt"></i> Accept changes</a>
-  <br><br><br>
+    <h5 class="container d-flex flex-column align-items-center">Your Requests:</h5>
+    <div class="card-deck row">
+      {{#each incoming}}
+        <div class="card bg-light mb-3" style="max-width: 18rem;">
+          <div class="card-header bg-info">{{this.subject}}<span class="badge badge-pill badge-secondary">Incoming</span></div>
+          <div class="card-body">
+            <p class="card-text">{{this.details}}</p>
+            <p class="card-text">
+              <input type="radio" name="test-1" value="2"><label for="test-1">Claimed</label>
+              <input type="radio" name="test-1" value="2"><label for="test-1">Rejected</label>
+              </p>
+              <p class="card-text"><small class="text-muted">
+                requested by {{this._owner}} on {{this.created_at}}</small></p>
+          </div>
+        </div>
+        {{/each}}
+      {{#each outgoing}}
+      <div class="card bg-light mb-3" style="max-width: 18rem;">
+        <div class="card-header bg-info">{{this.subject}} <span class="badge badge-pill badge-secondary">Outgoing</span>
+        </div>
+        <div class="card-body">
+          <p class="card-text">{{this.details}}</p>
+          <p class="card-text">
+            <input type="radio" name="test-1" value="2"><label for="test-1">Open</label>
+            <input type="radio" name="test-1" value="2"><label for="test-1">Closed</label>
+          </p>
+          <p class="card-text"><small class="text-muted">
+              assigned to {{this._owner}} on {{this.created_at}}</small></p>
+        </div>
+      </div>
+      {{/each}}
+    </div>
 
-			{{!-- <a href="/users/{{user._id}}/edit">
+    <div class="ml-5 w-50 mx-auto">
+      <label for="username">Username</label>
+      <input id="username" value="{{user.username}}" type="text"
+        class="form-control col-9 border border-info shadow p-3 ml-5 mb-5 bg-white rounded" name="username"
+        placeholder="Your username">
+
+      <label for="email">Email</label> <br>
+
+      <input id="email" value="{{user.email}}" type="email"
+        class="form-control col-9 border border-info shadow p-3 ml-5 mb-5 bg-white rounded" name="email"
+        placeholder="Your email">
+    </div>
+    <a class="btn rounded bg-info text-white"><i class="fas fa-pencil-alt"></i> Accept changes</a>
+    <br><br><br>
+
+    {{!-- <a href="/users/{{user._id}}/edit">
 				<i class="fas fa-pencil-alt"></i>
 				Edit
         </a>
         <br>		 --}}
-			<a class="btn rounded bg-info text-danger" href="/users/{{user._id}}/delete">
-				<i class="fas fa-trash-alt"></i>
-				 Delete Profile
-        </a>
-        <br>		 
-</form>
+    <a class="btn rounded bg-info text-danger" href="/users/{{user._id}}/delete">
+      <i class="fas fa-trash-alt"></i>
+      Delete Profile
+    </a>
+    <br>
+  </form>
   <br><br>
   {{#if message }}
-    <div class="error-message">{{ message }}</div>
+  <div class="error-message">{{ message }}</div>
   {{/if}}
-	
+
 
 </div>

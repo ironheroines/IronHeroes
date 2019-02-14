@@ -54,9 +54,11 @@ router.get('/users/:id/profile', checkConnectedAndActive, (req, res, next) => {
     return;
   }
 
-  Helpcall.find({ _owner: req.params.id }).then(hellpcalls => {
-    User.findById(req.params.id).then(user => {
-      res.render('profile', { user, hellpcalls });
+  Helpcall.find({ _owner: req.params.id }).then(outgoing => {
+    Helpcall.find({ _superhero: req.params.id }).then(incoming => {
+      User.findById(req.params.id).then(user => {
+        res.render('profile', { user, incoming, outgoing });
+      });
     });
   });
 });
