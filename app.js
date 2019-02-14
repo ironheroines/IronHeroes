@@ -87,6 +87,7 @@ app.use((req, res, next) => {
   // This code is executed at every request
   // It defines a view variable isConnectedAndActive = true or false
   res.locals.isConnectedAndActive = req.user && req.user.status === 'Active';
+  res.locals.user = req.user;
   next();
 });
 // app.use((req,res, next) => {

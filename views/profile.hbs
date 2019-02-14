@@ -31,7 +31,7 @@
 <div class ="form-add text-dark">
 <form action="/users/{{user._id}}/edit" method="post" enctype="multipart/form-data">	
   {{#if user.pictureUrl}}
-    <img src="{{user.pictureUrl}}" alt="user's picture" height="150px">
+    <img src="{{user.pictureUrl}}" alt="user's picture" class="img-fluid">
     <br> <br>
   {{/if}}
 

@@ -7,37 +7,26 @@ var User = require('../models/User');
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  res.render('index', { user: req.user });
+  res.render('index');
 });
 
 router.get('/find-super-hero', (req, res, next) => {
-  User.find().then(allUser => {
+  User.find().then(allUsers => {
     res.render('find-super-hero', {
-      allUser
+      allUsers
     });
   });
 });
 
 // goes to make a request, after checking if user is logged in & active
 router.get('/new-request/:id', checkConnectedAndActive, (req, res, next) => {
-  const userId = mongoose.Types.ObjectId(req.params.id);
   Helpcall.find({ _superhero: mongoose.Types.ObjectId(req.params.id) })
     .populate('_owner')
     .then(helpcalls => {
-    console.log("helpcalls", helpcalls)
-
-      let owner = helpcalls[0]._owner;
-      console.log(helpcalls);
-      console.log('DEBUG', owner);
-
       User.findById(req.params.id).then(superhero => {
-        User.findById(owner).then(user => {
-          res.render('new-request', {
-            helpcalls,
-            user,
-            superhero: req.params.id,
-            superheroObject: superhero
-          });
+        res.render('new-request', {
+          helpcalls,
+          superhero
         });
       });
     });
@@ -53,7 +42,7 @@ router.post('/new-helpcall', (req, res, next) => {
     _owner: req.user._id
     // address: req.body.address,
   }).then(user => {
-    res.redirect('/find-super-hero');
+    res.redirect('/new-request/'+req.body.superhero);
   });
 });
 
