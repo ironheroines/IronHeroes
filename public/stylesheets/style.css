@@ -7089,6 +7089,13 @@ img {
   width: 100px;
   object-fit: cover; }
 
+.bg::before {
+  display: inline-block;
+  float: left;
+  position: relative;
+  width: 100%;
+  content: url("/images/404.svg"); }
+
 .clearfix {
   clear: both; }
 
