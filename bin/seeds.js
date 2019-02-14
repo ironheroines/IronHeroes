@@ -6,11 +6,12 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const User = require('../models/User');
+require('dotenv').config();
 
 const bcryptSalt = 10;
 
 mongoose
-  .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
+  .connect(process.env.DATABASE_URI, { useNewUrlParser: true })
   .then(x => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
@@ -22,31 +23,36 @@ mongoose
 
 let users = [
   {
-    username: "Spiderman",
-    password: bcrypt.hashSync("spider", bcrypt.genSaltSync(bcryptSalt)),
-    email: "spider@man.com",
-    confirmationCode: "00001",
+    username: 'Spiderman',
+    password: bcrypt.hashSync('spider', bcrypt.genSaltSync(bcryptSalt)),
+    email: 'spider@man.com',
+    confirmationCode: '00001',
     status: 'Active',
     pictureUrl: 'images/spiderman.png',
     isSuperHero: true,
-    skills: ["wrist web-shooters", "cling to most solid surfaces"],
+    skills: ['wrist web-shooters', 'cling to most solid surfaces']
   },
   {
-    username: "Aaronman",
-    password: bcrypt.hashSync("pepper", bcrypt.genSaltSync(bcryptSalt)),
-    email: "iron@man.com",
-    confirmationCode: "00002",
+    username: 'Aaronman',
+    password: bcrypt.hashSync('pepper', bcrypt.genSaltSync(bcryptSalt)),
+    email: 'iron@man.com',
+    confirmationCode: '00002',
     status: 'Active',
-    pictureUrl: "images/IH_Jan1930.jpg",
+    pictureUrl: 'images/IH_Jan1930.jpg',
     // 'https://b.kisscc0.com/20180720/wve/kisscc0-iron-man-s-armor-spider-man-download-ironman-5b526c7f38b4b3.9306334015321283832323.jpg',
     isSuperHero: true,
-    skills: ["supersonic flight", "regenerative life support", "energy repulsor", "recaps"]
+    skills: [
+      'supersonic flight',
+      'regenerative life support',
+      'energy repulsor',
+      'recaps'
+    ]
   },
   {
-    username: "Thor",
-    password: bcrypt.hashSync("hammer", bcrypt.genSaltSync(bcryptSalt)),
-    email: "thor@thor.com",
-    confirmationCode: "00003",
+    username: 'Thor',
+    password: bcrypt.hashSync('hammer', bcrypt.genSaltSync(bcryptSalt)),
+    email: 'thor@thor.com',
+    confirmationCode: '00003',
     status: 'Active',
     pictureUrl:
       'https://scontent-lhr3-1.cdninstagram.com/vp/bc749ae7a0d25e13c953cc7062bcfaa2/5CFF01AA/t51.2885-15/e35/47692377_2004214382998139_1864336324419116359_n.jpg?_nc_ht=scontent-lhr3-1.cdninstagram.com&se=7&ig_cache_key=MTk1MzAwNDUyMzg5NTUwODI5OA%3D%3D.2',
@@ -60,62 +66,66 @@ let users = [
     ]
   },
   {
-    username: "Makes-Sense",
-    password: bcrypt.hashSync("42", bcrypt.genSaltSync(bcryptSalt)),
-    email: "makes@sense.com",
-    confirmationCode: "00004",
+    username: 'Makes-Sense',
+    password: bcrypt.hashSync('42', bcrypt.genSaltSync(bcryptSalt)),
+    email: 'makes@sense.com',
+    confirmationCode: '00004',
     status: 'Active',
-    pictureUrl: 'images/https://pbs.twimg.com/profile_images/802537394901778432/EFsZ7VQm_400x400.jpg',
+    pictureUrl:
+      'https://pbs.twimg.com/profile_images/802537394901778432/EFsZ7VQm_400x400.jpg',
     isSuperHero: true,
-    skills: [
-      "set pupils into coding trance", 
-      "solving complex tasks"
-    ],
+    skills: ['set pupils into coding trance', 'solving complex tasks']
   },
   {
-    username: "Batman",
-    password: bcrypt.hashSync("bat", bcrypt.genSaltSync(bcryptSalt)),
-    email: "bat@man.com",
-    confirmationCode: "00005",
+    username: 'Batman',
+    password: bcrypt.hashSync('bat', bcrypt.genSaltSync(bcryptSalt)),
+    email: 'bat@man.com',
+    confirmationCode: '00005',
     status: 'Active',
-    pictureUrl: 'https://chrisjohnsdesign.nyc3.digitaloceanspaces.com/nerddomepodcast.com/2016/06/Batman-Rebirth-banner-e1459450194577.jpg',
+    pictureUrl:
+      'https://chrisjohnsdesign.nyc3.digitaloceanspaces.com/nerddomepodcast.com/2016/06/Batman-Rebirth-banner-e1459450194577.jpg',
     isSuperHero: true,
     skills: [
-      "rich",
-      "martial artist",
-      "expert detective",
-      "high-tech equipment"
-    ],
+      'rich',
+      'martial artist',
+      'expert detective',
+      'high-tech equipment'
+    ]
   },
   {
-    username: "Superman",
-    password: bcrypt.hashSync("kryptonite", bcrypt.genSaltSync(bcryptSalt)),
-    email: "super@man.com",
-    confirmationCode: "00006",
+    username: 'Superman',
+    password: bcrypt.hashSync('kryptonite', bcrypt.genSaltSync(bcryptSalt)),
+    email: 'super@man.com',
+    confirmationCode: '00006',
     status: 'Active',
-    pictureUrl: 'https://i2.wp.com/batman-on-film.com/wp-content/uploads/2018/09/Superman-by-Dan-Jurgens-in-Action-Comics-1000.jpg?zoom=2&fit=1400%2C700&ssl=1',
+    pictureUrl:
+      'https://i2.wp.com/batman-on-film.com/wp-content/uploads/2018/09/Superman-by-Dan-Jurgens-in-Action-Comics-1000.jpg?zoom=2&fit=1400%2C700&ssl=1',
     isSuperHero: true,
-    skills: [
-      "flight",
-      "superhuman vision",
-    ],
+    skills: ['flight', 'superhuman vision']
   },
   {
-    username: "Wonderwoman",
-    password: bcrypt.hashSync("feminism", bcrypt.genSaltSync(bcryptSalt)),
-    email: "wonder@woman.com",
-    confirmationCode: "00007",
+    username: 'Wonderwoman',
+    password: bcrypt.hashSync('feminism', bcrypt.genSaltSync(bcryptSalt)),
+    email: 'wonder@woman.com',
+    confirmationCode: '00007',
     status: 'Active',
-    pictureUrl: 'https://media.wired.com/photos/59375820fbdfa3763bab97ae/master/w_1440,c_limit/GalleryComics_1920x1080_20170531_WW-Annual-1_5903bbd4d223b6.50778583TA.jpg',
+    pictureUrl:
+      'https://media.wired.com/photos/59375820fbdfa3763bab97ae/master/w_1440,c_limit/GalleryComics_1920x1080_20170531_WW-Annual-1_5903bbd4d223b6.50778583TA.jpg',
     isSuperHero: true,
-    skills: [
-      "woman who codes",
-      "immortality",
-      "Lasso of Truth"
-    ],
+    skills: ['woman who codes', 'immortality', 'Lasso of Truth']
   },
+  {
+    username: 'Axl',
+    password: bcrypt.hashSync('Axe', bcrypt.genSaltSync(bcryptSalt)),
+    email: 'axel@ironhack.com',
+    confirmationCode: '00008',
+    status: 'Active',
+    pictureUrl:
+      'https://media.licdn.com/dms/image/C5603AQE8A6X5t1-9rQ/profile-displayphoto-shrink_800_800/0?e=1555545600&v=beta&t=5_RKYMfOCeUZUV_u2oeBsoSZ8x0d8S4yhfOWXpL2sII',
+    isSuperHero: true,
+    skills: ['microsoft', 'canvas', 'googling']
+  }
 ];
-
 
 User.deleteMany()
   .then(() => {

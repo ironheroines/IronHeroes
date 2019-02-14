@@ -14,10 +14,7 @@ const MongoStore = require('connect-mongo')(session);
 const flash = require('connect-flash');
 
 mongoose
-  .connect(
-    process.env.MONGODB_URI,
-    { useNewUrlParser: true }
-  )
+  .connect(process.env.DATABASE_URI, { useNewUrlParser: true })
   .then(x => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
@@ -72,10 +69,13 @@ app.locals.title = 'Express - Generated with IronGenerator';
 app.use(
   session({
     secret: 'irongenerator',
-    cookie: { maxAge: 60000 },
+    cookie: { maxAge: 60000000 },
     resave: true,
     saveUninitialized: true,
-    store: new MongoStore({ mongooseConnection: mongoose.connection })
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60
+    })
   })
 );
 app.use(flash());

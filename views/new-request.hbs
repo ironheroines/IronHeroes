@@ -1,27 +1,38 @@
 <div class="container">
-<h2 class="my-4">Add a new Request</h2>
-
-<form action="/new-helpcall" method="POST" id="form-container">
-  <input type="hidden" name="superhero" value="{{superhero}}">
-  <label for="subject">Subject</label>
-  <input class="form-control" type="text" placeholder="What is your request?" name="subject" id="" > <br>
-
-  <label for="details">Comments</label>
-  <textarea class="form-control" placeholder="Give more details" name="details" id="" cols="30" rows="5"></textarea>
-  {{!-- <input class="form-control" type="text" placeholder="Details" name="details" id="" >  --}}
+  <h2 class="my-4">Add a new Request</h2>
+  <div>
+    <img class="img-fluid rounded-circle" src="../{{superheroObject.pictureUrl}}" alt="">
+    <br>
+    {{{superheroObject.username}}}
+  </div>
   <br>
 
-  {{!-- <label for="address">Address</label>
+  <form action="/new-helpcall" method="POST" id="form-container">
+    <input type="hidden" name="superhero" value="{{superhero}}">
+    <label for="subject">Subject</label>
+    <input class="form-control" type="text" placeholder="What is your request?" name="subject" id=""> <br>
+
+    <label for="details">Comments</label>
+    <textarea class="form-control" placeholder="Give more details" name="details" id="" cols="30" rows="5"></textarea>
+    {{!-- <input class="form-control" type="text" placeholder="Details" name="details" id="" >  --}}
+    <br>
+
+    {{!-- <label for="address">Address</label>
   <input class="form-control" type="text" placeholder="Address" name="address" id="" > <br> --}}
 
-  <button type="submit" class="btn btn-outline-info">Submit Request</button>
-</form>
+    <button type="submit" class="btn btn-outline-info">Submit Request</button>
+  </form>
 
-{{#each helpcalls}}
-  {{!-- {{_owner}} --}}
-  Helpcall.findOne({"_owner"})
-    .populate("user")
-  populate("user")
-  {{subject}}
-{{/each}}
+  <div>
+    <br>
+    <br>
+    <br>
+
+    {{#each helpcalls}}
+    {{!-- {{_owner}} --}}
+    Username {{_owner.username}}
+    Subject {{subject}}
+    <br>
+    {{/each}}
+  </div>
 </div>
