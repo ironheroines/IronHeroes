@@ -6,6 +6,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const User = require('../models/User');
+const Helpcall = require("../models/Helpcall")
 require('dotenv').config();
 
 const bcryptSalt = 10;
@@ -93,15 +94,15 @@ let users = [
     ]
   },
   {
-    username: 'Superman',
-    password: bcrypt.hashSync('kryptonite', bcrypt.genSaltSync(bcryptSalt)),
-    email: 'super@man.com',
+    username: 'Mario',
+    password: bcrypt.hashSync('yoshi', bcrypt.genSaltSync(bcryptSalt)),
+    email: 'super@mario.com',
     confirmationCode: '00006',
     status: 'Active',
     pictureUrl:
-      'https://i2.wp.com/batman-on-film.com/wp-content/uploads/2018/09/Superman-by-Dan-Jurgens-in-Action-Comics-1000.jpg?zoom=2&fit=1400%2C700&ssl=1',
+      'http://is1-ssl.mzstatic.com/image/thumb/Purple111/v4/ec/13/72/ec137292-f2be-9f55-3be7-bbdffb73f49a/mzl.vrvgkxus.png/1200x630bb.jpg',
     isSuperHero: true,
-    skills: ['flight', 'superhuman vision']
+    skills: ['plumbing', "cleaning pipes", 'effective on mushrooms']
   },
   {
     username: 'Wonderwoman',
@@ -112,19 +113,50 @@ let users = [
     pictureUrl:
       'https://media.wired.com/photos/59375820fbdfa3763bab97ae/master/w_1440,c_limit/GalleryComics_1920x1080_20170531_WW-Annual-1_5903bbd4d223b6.50778583TA.jpg',
     isSuperHero: true,
-    skills: ['woman who codes', 'immortality', 'Lasso of Truth']
+    skills: ['woman who codes', 'Lasso of Truth']
   },
   {
-    username: 'Axl',
-    password: bcrypt.hashSync('Axe', bcrypt.genSaltSync(bcryptSalt)),
+    username: 'Superaxel',
+    password: bcrypt.hashSync('axe', bcrypt.genSaltSync(bcryptSalt)),
     email: 'axel@ironhack.com',
     confirmationCode: '00008',
     status: 'Active',
     pictureUrl:
       'https://media.licdn.com/dms/image/C5603AQE8A6X5t1-9rQ/profile-displayphoto-shrink_800_800/0?e=1555545600&v=beta&t=5_RKYMfOCeUZUV_u2oeBsoSZ8x0d8S4yhfOWXpL2sII',
     isSuperHero: true,
-    skills: ['microsoft', 'canvas', 'googling']
-  }
+    skills: ['linux', 'canvas', 'google']
+  },
+  {
+    username: 'Kong',
+    password: bcrypt.hashSync('banana', bcrypt.genSaltSync(bcryptSalt)),
+    email: 'donkey@kong.com',
+    confirmationCode: '00009',
+    status: 'Active',
+    pictureUrl: 'https://www.smashlabs.de/wcf/attachment/6661-2-1iz5xd2-png/',
+    isSuperHero: true,
+    skills: ['strong', 'clumsy', "wreckful"]
+  },
+  {
+    username: 'Ruby',
+    password: bcrypt.hashSync('ruby', bcrypt.genSaltSync(bcryptSalt)),
+    email: 'ruby@rub.com',
+    confirmationCode: '00010',
+    status: 'Active',
+  }, 
+  {
+    username: 'Julia',
+    password: bcrypt.hashSync('julia', bcrypt.genSaltSync(bcryptSalt)),
+    email: 'julia@jul.com',
+    confirmationCode: '00011',
+    status: 'Active',
+  },
+  {
+    username: 'Java',
+    password: bcrypt.hashSync('java', bcrypt.genSaltSync(bcryptSalt)),
+    email: 'java@jav.com',
+    confirmationCode: '00012',
+    status: 'Active',
+  },
 ];
 
 User.deleteMany()
@@ -134,6 +166,35 @@ User.deleteMany()
   .then(usersCreated => {
     console.log(`${usersCreated.length} users created with the following id:`);
     console.log(usersCreated.map(u => u._id));
+  })
+  .then(() => {
+    // Close properly the connection to Mongoose
+    mongoose.disconnect();
+  })
+  .catch(err => {
+    mongoose.disconnect();
+    throw err;
+  });
+
+let helpcalls = [
+{
+  subject: "No coffee on 20th floor",
+    details: "Please check the water pipes",
+    status: 'Claimed',
+    //  reference to the superhero
+    _superhero: "5c657372f34861122f8c6e75",
+    // reference to the requestor
+    _owner: "5c65839634a7d7164f4951a4",
+},
+];
+
+User.deleteMany()
+  .then(() => {
+    return Helpcall.create(helpcalls);
+  })
+  .then(helpcallsCreated => {
+    console.log(`${helpcallsCreated.length} helpcalls created with the following id:`);
+    console.log(helpcallsCreated.map(u => u._id));
   })
   .then(() => {
     // Close properly the connection to Mongoose

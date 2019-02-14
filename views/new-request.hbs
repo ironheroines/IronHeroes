@@ -1,10 +1,11 @@
 <div class="container">
   <h2 class="my-4">Add a new Request</h2>
   <div>
-    <img class="img-fluid rounded-circle" src="../{{superheroObject.pictureUrl}}" alt="">
+    <img class="superhero-request-img" src="../{{superheroObject.pictureUrl}}" alt="">
     <br>
     {{{superheroObject.username}}}
   </div>
+  <br>
   <br>
 
   <form action="/new-helpcall" method="POST" id="form-container">
@@ -26,13 +27,20 @@
   <div>
     <br>
     <br>
-    <br>
 
     {{#each helpcalls}}
+    {{#if _owner}}
+   {{_owner.username}}:
+   {{else}}
+   Anonymous:
+    {{/if}}
+    <br>
     {{!-- {{_owner}} --}}
-    Username {{_owner.username}}
-    Subject {{subject}}
+   {{subject}}! 
+   <br>
+   Details: {{details}}
     <br>
     {{/each}}
   </div>
 </div>
+<br>

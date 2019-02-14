@@ -21,9 +21,11 @@ router.get('/find-super-hero', (req, res, next) => {
 // goes to make a request, after checking if user is logged in & active
 router.get('/new-request/:id', checkConnectedAndActive, (req, res, next) => {
   const userId = mongoose.Types.ObjectId(req.params.id);
-  Helpcall.find()
+  Helpcall.find({ _superhero: mongoose.Types.ObjectId(req.params.id) })
     .populate('_owner')
     .then(helpcalls => {
+    console.log("helpcalls", helpcalls)
+
       let owner = helpcalls[0]._owner;
       console.log(helpcalls);
       console.log('DEBUG', owner);
@@ -43,10 +45,11 @@ router.get('/new-request/:id', checkConnectedAndActive, (req, res, next) => {
 
 router.post('/new-helpcall', (req, res, next) => {
   console.log('In new help call, req.user', req.user);
+  console.log('In new help call, req.body', req.body);
   Helpcall.create({
     subject: req.body.subject,
     details: req.body.details,
-    superhero: req.body.superhero,
+    _superhero: req.body.superhero,
     _owner: req.user._id
     // address: req.body.address,
   }).then(user => {
