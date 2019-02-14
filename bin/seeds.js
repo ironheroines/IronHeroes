@@ -29,7 +29,7 @@ let users = [
     email: 'spider@man.com',
     confirmationCode: '00001',
     status: 'Active',
-    pictureUrl: 'images/spiderman.png',
+    pictureUrl: '/images/spiderman.png',
     isSuperHero: true,
     skills: ['wrist web-shooters', 'cling to most solid surfaces']
   },
@@ -39,7 +39,7 @@ let users = [
     email: 'iron@man.com',
     confirmationCode: '00002',
     status: 'Active',
-    pictureUrl: 'images/IH_Jan1930.jpg',
+    pictureUrl: '/images/IH_Jan1930.jpg',
     // 'https://b.kisscc0.com/20180720/wve/kisscc0-iron-man-s-armor-spider-man-download-ironman-5b526c7f38b4b3.9306334015321283832323.jpg',
     isSuperHero: true,
     skills: [
@@ -142,7 +142,7 @@ let users = [
     email: 'ruby@rub.com',
     confirmationCode: '00010',
     status: 'Active',
-  }, 
+  },
   {
     username: 'Julia',
     password: bcrypt.hashSync('julia', bcrypt.genSaltSync(bcryptSalt)),
@@ -160,36 +160,27 @@ let users = [
 ];
 
 User.deleteMany()
+  .then(() => Helpcall.deleteMany())
   .then(() => {
     return User.create(users);
   })
   .then(usersCreated => {
     console.log(`${usersCreated.length} users created with the following id:`);
     console.log(usersCreated.map(u => u._id));
-  })
-  .then(() => {
-    // Close properly the connection to Mongoose
-    mongoose.disconnect();
-  })
-  .catch(err => {
-    mongoose.disconnect();
-    throw err;
-  });
 
-let helpcalls = [
-{
-  subject: "No coffee on 20th floor",
-    details: "Please check the water pipes",
-    status: 'Claimed',
-    //  reference to the superhero
-    _superhero: "5c657372f34861122f8c6e75",
-    // reference to the requestor
-    _owner: "5c65839634a7d7164f4951a4",
-},
-];
 
-User.deleteMany()
-  .then(() => {
+    let helpcalls = [
+      {
+        subject: "No coffee on 20th floor",
+        details: "Please check the water pipes",
+        status: 'Claimed',
+        //  reference to the superhero
+        _superhero: usersCreated[5]._id, // The 5th user _id (mario)
+        // reference to the requestor
+        _owner: usersCreated[usersCreated.length - 1]._id, // The last user _id
+      },
+    ];
+
     return Helpcall.create(helpcalls);
   })
   .then(helpcallsCreated => {

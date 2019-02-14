@@ -6,7 +6,7 @@ const helpcallSchema = new Schema({
   details: String,
   status: {
     type: String,
-    enum: ['Open', 'Claimed', 'Closed'],
+    enum: ['Open', 'Claimed', 'Closed', 'Rejected'],
     default: 'Open',
   },
   address: String,

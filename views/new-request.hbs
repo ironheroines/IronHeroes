@@ -1,15 +1,15 @@
 <div class="container">
   <h2 class="my-4">Add a new Request</h2>
   <div>
-    <img class="superhero-request-img" src="../{{superheroObject.pictureUrl}}" alt="">
+    <img class="superhero-request-img" src="../{{superhero.pictureUrl}}" alt="">
     <br>
-    {{{superheroObject.username}}}
+    {{{superhero.username}}}
   </div>
   <br>
   <br>
 
   <form action="/new-helpcall" method="POST" id="form-container">
-    <input type="hidden" name="superhero" value="{{superhero}}">
+    <input type="hidden" name="superhero" value="{{superhero._id}}">
     <label for="subject">Subject</label>
     <input class="form-control" type="text" placeholder="What is your request?" name="subject" id=""> <br>
 
