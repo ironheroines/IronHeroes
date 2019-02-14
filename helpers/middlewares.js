@@ -6,4 +6,5 @@ module.exports = {
     else
       res.redirect('/auth/login')
   }
+
  }
