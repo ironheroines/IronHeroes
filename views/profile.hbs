@@ -67,14 +67,9 @@
         class="form-control col-9 border border-info shadow p-3 ml-5 mb-5 bg-white rounded" name="email"
         placeholder="Your email">
     </div>
-    <a class="btn rounded bg-info text-white"><i class="fas fa-pencil-alt"></i> Accept changes</a>
+    <a class="btn rounded bg-info text-white" href="/users/{{user._id}}/profile"><i class="fas fa-pencil-alt"></i> Accept changes</a>
     <br><br><br>
 
-    {{!-- <a href="/users/{{user._id}}/edit">
-				<i class="fas fa-pencil-alt"></i>
-				Edit
-        </a>
-        <br>		 --}}
     <a class="btn rounded bg-info text-danger" href="/users/{{user._id}}/delete">
       <i class="fas fa-trash-alt"></i>
       Delete Profile

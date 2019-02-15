@@ -167,7 +167,43 @@ User.deleteMany()
         details: "Please check the water pipes",
         status: 'Claimed',
         //  reference to the superhero
-        _superhero: usersCreated[5]._id, // The 5th user _id (mario)
+        _superhero: usersCreated[5]._id, // The 5th user _id (luigi)
+        // reference to the requestor
+        _owner: usersCreated[usersCreated.length - 1]._id, // The last user _id
+      },
+      {
+        subject: "Save my kitty from a tree",
+        details: "Quick, save my kitty! From that tree over there!",
+        status: 'Claimed',
+        //  reference to the superhero
+        _superhero: usersCreated[0]._id, // The 0th user _id (spiderman)
+        // reference to the requestor
+        _owner: usersCreated[usersCreated.length - 1]._id, // The last user _id
+      },
+      {
+        subject: "Linux is behaving crazy",
+        details: "Please help with my notebook!",
+        status: 'Claimed',
+        //  reference to the superhero
+        _superhero: usersCreated[7]._id, // The 5th user _id (mario)
+        // reference to the requestor
+        _owner: usersCreated[usersCreated.length - 1]._id, // The last user _id
+      },
+      {
+        subject: "I need the function for time travel",
+        details: "Do you have 2 minutes to solve this for me? Thanks!",
+        status: 'Claimed',
+        //  reference to the superhero
+        _superhero: usersCreated[3]._id, // The 5th user _id (mario)
+        // reference to the requestor
+        _owner: usersCreated[usersCreated.length - 1]._id, // The last user _id
+      },
+      {
+        subject: "Yell at Luigi!",
+        details: "Coffee Machine still not working. So, yell at Luigi! Thanks.",
+        status: 'Claimed',
+        //  reference to the superhero
+        _superhero: usersCreated[8]._id, // The 5th user _id (mario)
         // reference to the requestor
         _owner: usersCreated[usersCreated.length - 1]._id, // The last user _id
       },
