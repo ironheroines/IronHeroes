@@ -23,23 +23,21 @@
 
     <button type="submit" class="btn btn-outline-info">Submit Request</button>
   </form>
+  <br>
+  <br>
 
-  <div>
-    <br>
-    <br>
-
+  <h5 class="container d-flex flex-column align-items-center">Open incoming Requests:</h5>
+  <div class="card-deck row">
     {{#each helpcalls}}
-    {{#if _owner}}
-   {{_owner.username}}:
-   {{else}}
-   Anonymous:
-    {{/if}}
-    <br>
-   {{subject}}! 
-   <br>
-   Details: {{details}}
-    <br>
-  Status: {{status}}
+    <div class="card bg-light mb-3" style="max-width: 18rem;">
+      <div class="card-header bg-info">{{this.subject}}</div>
+      <div class="card-body">
+        <p class="card-text">{{this.details}}</p>
+        <p class="card-text">Status: {{this.status}}</p>
+        <p class="card-text"><small class="text-muted">
+            requested by {{#if _owner}}{{_owner.username}}{{else}}Anonymous{{/if}} on {{this.created_at}}</small></p>
+      </div>
+    </div>
     {{/each}}
   </div>
 </div>

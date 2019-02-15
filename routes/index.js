@@ -54,8 +54,8 @@ router.get('/users/:id/profile', checkConnectedAndActive, (req, res, next) => {
     return;
   }
 
-  Helpcall.find({ _owner: req.params.id }).then(outgoing => {
-    Helpcall.find({ _superhero: req.params.id }).then(incoming => {
+  Helpcall.find({ _owner: req.params.id }).populate('_superhero').then(outgoing => {
+    Helpcall.find({ _superhero: req.params.id }).populate('_owner').then(incoming => {
       User.findById(req.params.id).then(user => {
         res.render('profile', { user, incoming, outgoing });
       });
@@ -69,6 +69,15 @@ router.post('/users/:id/profile', (req, res, next) => {
     email: req.body.email
   }).then(user => {
     res.redirect('/');
+  });
+});
+
+// update call
+router.get('/updatehelpcall/:id/:state', (req, res, next) => {
+  Helpcall.findByIdAndUpdate(req.params.id, {
+    status: req.params.state,
+  }).then(user => {
+    res.redirect('/users/'+req.user.id+'/profile');
   });
 });
 
