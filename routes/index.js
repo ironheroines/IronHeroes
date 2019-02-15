@@ -72,13 +72,23 @@ router.post('/users/:id/profile', (req, res, next) => {
   });
 });
 
-// Delete User
+// Delete User and helpcalls created by this user
 router.get('/users/:id/delete', (req, res, next) => {
   if (!(req.user._id == req.params.id)) res.redirect('/');
   else
-    User.findByIdAndRemove(req.params.id).then(user => {
+    Promise.all([
+      Helpcall.remove({
+        _owner: mongoose.Types.ObjectId(req.params.id)
+      }),
+      User.findByIdAndRemove(req.params.id)
+    ])
+    .then(() => {
       res.redirect('/');
-    });
+    })
+    .catch(err => {
+      console.log(err);
+      next();
+    })
 });
 
 // //POST new request to the database

@@ -36,10 +36,11 @@ let users = [
   {
     username: 'Aaronman',
     password: bcrypt.hashSync('pepper', bcrypt.genSaltSync(bcryptSalt)),
-    email: 'iron@man.com',
+    email: 'aaron@man.com',
     confirmationCode: '00002',
     status: 'Active',
     pictureUrl: '/images/IH_Jan1930.jpg',
+    isSuperHero: true,
     skills: [
       'recaps',
       "console.log",
@@ -53,8 +54,7 @@ let users = [
     email: 'thor@thor.com',
     confirmationCode: '00003',
     status: 'Active',
-    pictureUrl:
-      'https://scontent-lhr3-1.cdninstagram.com/vp/bc749ae7a0d25e13c953cc7062bcfaa2/5CFF01AA/t51.2885-15/e35/47692377_2004214382998139_1864336324419116359_n.jpg?_nc_ht=scontent-lhr3-1.cdninstagram.com&se=7&ig_cache_key=MTk1MzAwNDUyMzg5NTUwODI5OA%3D%3D.2',
+    pictureUrl: '/images/Thor.jpg',
     isSuperHero: true,
     skills: [
       'hammer',
@@ -69,8 +69,7 @@ let users = [
     email: 'makes@sense.com',
     confirmationCode: '00004',
     status: 'Active',
-    pictureUrl:
-      '/images/makes-sense.jpg',
+    pictureUrl: '/images/Makes-Sense.jpg',
     isSuperHero: true,
     skills: ["Mastermind", 'solving complex tasks', 'coding trance']
   },
@@ -80,7 +79,7 @@ let users = [
     email: 'bat@man.com',
     confirmationCode: '00005',
     status: 'Active',
-    pictureUrl: '/images/batman.jpg',
+    pictureUrl: '/images/Batman.jpg',
     isSuperHero: true,
     skills: [
       'rich',
@@ -95,7 +94,7 @@ let users = [
     email: 'super@luigi.com',
     confirmationCode: '00006',
     status: 'Active',
-    pictureUrl: '/images/luigi.png',
+    pictureUrl: '/images/Luigi.png',
     isSuperHero: true,
     skills: ['plumbing', 'going wild on mushrooms']
   },
@@ -105,8 +104,7 @@ let users = [
     email: 'wonder@woman.com',
     confirmationCode: '00007',
     status: 'Active',
-    pictureUrl:
-      '/images/wonderwoman.jpg',
+    pictureUrl: '/images/Wonderwoman.jpg',
     isSuperHero: true,
     skills: ['woman who codes', 'Lasso of Truth']
   },
@@ -116,8 +114,7 @@ let users = [
     email: 'axel@ironhack.com',
     confirmationCode: '00008',
     status: 'Active',
-    pictureUrl:
-      '/images/superaxel.jpeg',
+    pictureUrl: '/images/Superaxel.jpeg',
     isSuperHero: true,
     skills: ['linux', 'canvas', 'google']
   },
@@ -127,7 +124,7 @@ let users = [
     email: 'donkey@kong.com',
     confirmationCode: '00009',
     status: 'Active',
-    pictureUrl: '/images/kong.png',
+    pictureUrl: '/images/Kong.png',
     isSuperHero: true,
     skills: ['strong', 'clumsy', "wreckful"]
   },
