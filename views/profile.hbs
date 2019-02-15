@@ -22,31 +22,34 @@
     <h5 class="container d-flex flex-column align-items-center">Your Requests:</h5>
     <div class="card-deck row">
       {{#each incoming}}
-        <div class="card bg-light mb-3" style="max-width: 18rem;">
-          <div class="card-header bg-info">{{this.subject}}<span class="badge badge-pill badge-secondary">Incoming</span></div>
-          <div class="card-body">
-            <p class="card-text">{{this.details}}</p>
-            <p class="card-text">
-              <input type="radio" name="test-1" value="2"><label for="test-1">Claimed</label>
-              <input type="radio" name="test-1" value="2"><label for="test-1">Rejected</label>
-              </p>
-              <p class="card-text"><small class="text-muted">
-                requested by {{this._owner}} on {{this.created_at}}</small></p>
-          </div>
+      <div class="card bg-light mb-3" style="max-width: 18rem;">
+        <div class="card-header bg-info">{{this.subject}} <span class="badge badge-pill badge-secondary">Incoming</span>
         </div>
-        {{/each}}
+        <div class="card-body">
+          <p class="card-text">{{this.details}}</p>
+          <p class="card-text">Status: {{this.status}}</p>
+          <p class="card-text">
+            <a class="btn btn-success" href="/updatehelpcall/{{this.id}}/Claimed">Claim</a>
+            <a class="btn btn-danger" href="/updatehelpcall/{{this.id}}/Rejected">Reject</a>
+          </p>
+          <p class="card-text"><small class="text-muted">
+              requested by {{this._owner.username}} on {{this.created_at}}</small></p>
+        </div>
+      </div>
+      {{/each}}
       {{#each outgoing}}
       <div class="card bg-light mb-3" style="max-width: 18rem;">
         <div class="card-header bg-info">{{this.subject}} <span class="badge badge-pill badge-secondary">Outgoing</span>
         </div>
         <div class="card-body">
           <p class="card-text">{{this.details}}</p>
+          <p class="card-text">Status: {{this.status}}</p>
           <p class="card-text">
-            <input type="radio" name="test-1" value="2"><label for="test-1">Open</label>
-            <input type="radio" name="test-1" value="2"><label for="test-1">Closed</label>
+            <a class="btn btn-light" href="/updatehelpcall/{{this.id}}/Open">Open</a>
+            <a class="btn btn-light" href="/updatehelpcall/{{this.id}}/Closed">Close</a>
           </p>
           <p class="card-text"><small class="text-muted">
-              assigned to {{this._owner}} on {{this.created_at}}</small></p>
+              assigned to {{this._superhero.username}} on {{this.created_at}}</small></p>
         </div>
       </div>
       {{/each}}
