@@ -8,8 +8,8 @@ x Inside the route `GET /users/:id/delete`, delete the Helpcalls linked to the u
 x Add favicon
 x Download images
 x Rerun the seeds file
-- On the profile page, add a button for superheroes to claim/reject a Helpcall
-- On the profile page, add a button for users to close a Helpcall
+x On the profile page, add a button for superheroes to claim/reject a Helpcall
+x On the profile page, add a button for users to close a Helpcall
 - Bonus: Statistic page to see the best super heroes
 
 
